@@ -1,3 +1,11 @@
+"icons": [
+  {
+    "src": "./icon.svg",
+    "sizes": "any",
+    "type": "image/svg+xml",
+    "purpose": "any maskable"
+  }
+
 {
   "name": "ÚtilHub V12 — Gran-Master-Nova",
   "short_name": "ÚtilHub",
