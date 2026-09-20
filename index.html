@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="ÚtilHub V12 — herramientas útiles para tu día a día.">
+  <title>ÚtilHub V12 — Gran-Master-Nova</title>
+
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NOVA FLOW 3.0 -->
+  <div class="nova-bg" aria-hidden="true">
+    <div class="nova-orb orb-1"></div>
+    <div class="nova-orb orb-2"></div>
+    <div class="nova-orb orb-3"></div>
+    <div id="novaParticles"></div>
+    <div id="novaStars"></div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav">
+
+      <a href="#inicio" class="brand">
+        <span class="brand-mark">Ú</span>
+        <span>
+          <strong>ÚtilHub</strong>
+          <small>V12 · Gran-Master-Nova</small>
+        </span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">
+        ☰
+      </button>
+
+      <nav id="mainNav">
+        <a href="#inicio">Inicio</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#vida">Vida diaria</a>
+        <a href="#estudio">Estudio</a>
+        <a href="#ajustes">Ajustes</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeBtn" title="Cambiar tema">☀️</button>
+        <button class="icon-btn" id="quickSearchBtn" title="Buscar">⌕</button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="container hero-content">
+
+        <div class="hero-badge">
+          <span></span>
+          NOVA FLOW 3.0 · SEMI-FINAL
+        </div>
+
+        <h1>
+          Todo lo útil,
+          <span>en un solo lugar.</span>
+        </h1>
+
+        <p>
+          Herramientas para estudiar, organizarte, calcular,
+          comprar, buscar lugares y resolver tareas del día a día.
+        </p>
+
+        <div class="hero-search">
+          <span>⌕</span>
+          <input
+            id="globalSearch"
+            type="search"
+            placeholder="¿Qué necesitas? Ej. descuento, cronómetro, compras..."
+            autocomplete="off"
+          >
+          <kbd>Ctrl K</kbd>
+        </div>
+
+        <div class="hero-buttons">
+          <a class="btn primary" href="#herramientas">Explorar herramientas</a>
+          <button class="btn secondary" onclick="openTool('favorites')">
+            ⭐ Mis favoritos
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <strong id="toolCount">0</strong>
+            <span>herramientas</span>
+          </div>
+          <div>
+            <strong id="favoriteCount">0</strong>
+            <span>favoritos</span>
+          </div>
+          <div>
+            <strong id="recentCount">0</strong>
+            <span>recientes</span>
+          </div>
+          <div>
+            <strong id="connectionStatus">●</strong>
+            <span id="connectionText">Conectado</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACCESO RÁPIDO -->
+    <section class="quick-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">CENTRO ÚTILHUB</span>
+            <h2>Acceso rápido</h2>
+          </div>
+        </div>
+
+        <div id="quickTools" class="quick-grid"></div>
+
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section id="herramientas" class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">CENTRO DE HERRAMIENTAS</span>
+            <h2>¿Qué quieres hacer?</h2>
+            <p>Selecciona una categoría o busca directamente una herramienta.</p>
+          </div>
+        </div>
+
+        <div class="filters" id="categoryFilters">
+          <button class="filter active" data-category="all">Todas</button>
+          <button class="filter" data-category="calculo">Cálculo</button>
+          <button class="filter" data-category="dinero">Dinero</button>
+          <button class="filter" data-category="tiempo">Tiempo</button>
+          <button class="filter" data-category="organizacion">Organización</button>
+          <button class="filter" data-category="estudio">Estudio</button>
+          <button class="filter" data-category="texto">Texto</button>
+          <button class="filter" data-category="utilidades">Utilidades</button>
+        </div>
+
+        <div id="toolGrid" class="tool-grid"></div>
+
+        <div id="noResults" class="empty-state hidden">
+          <div>🔎</div>
+          <h3>No encontramos esa herramienta</h3>
+          <p>Prueba con otra palabra o selecciona otra categoría.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIDA DIARIA -->
+    <section id="vida" class="section alt-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">VIDA DIARIA</span>
+            <h2>Encuentra lo que necesitas</h2>
+            <p>ÚtilHub te ayuda a localizar opciones; las compras y pedidos los realiza el usuario.</p>
+          </div>
+        </div>
+
+        <div class="life-grid">
+
+          <article class="life-card">
+            <div class="life-icon">🍔</div>
+            <h3>Comida</h3>
+            <p>Busca restaurantes y lugares para comer.</p>
+            <button class="btn primary small" onclick="openTool('food')">
+              Buscar comida
+            </button>
+          </article>
+
+          <article class="life-card">
+            <div class="life-icon">🛍️</div>
+            <h3>Compras</h3>
+            <p>Busca productos, tiendas y opciones de compra.</p>
+            <button class="btn primary small" onclick="openTool('shopping')">
+              Buscar compras
+            </button>
+          </article>
+
+          <article class="life-card">
+            <div class="life-icon">📍</div>
+            <h3>Cerca de mí</h3>
+            <p>Busca farmacias, supermercados, bancos y servicios.</p>
+            <button class="btn primary small" onclick="openTool('nearby')">
+              Buscar lugares
+            </button>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ESTUDIO -->
+    <section id="estudio" class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ESTUDIO</span>
+            <h2>Organiza tu aprendizaje</h2>
+          </div>
+        </div>
+
+        <div class="study-banner">
+          <div>
+            <span class="banner-icon">📚</span>
+            <div>
+              <h3>Tu espacio de estudio</h3>
+              <p>Planifica materias, tareas y fechas desde un solo lugar.</p>
+            </div>
+          </div>
+          <button class="btn primary" onclick="openTool('study')">
+            Abrir organizador
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AJUSTES -->
+    <section id="ajustes" class="section alt-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">PERSONALIZACIÓN</span>
+            <h2>Centro de ajustes</h2>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+
+          <div class="setting-card">
+            <div>
+              <strong>🌙 Tema oscuro</strong>
+              <small>Cambia entre modo oscuro y claro.</small>
+            </div>
+            <button class="toggle" id="themeToggle"></button>
+          </div>
+
+          <div class="setting-card">
+            <div>
+              <strong>✨ NOVA FLOW 3.0</strong>
+              <small>Activa o desactiva los efectos visuales.</small>
+            </div>
+            <button class="toggle active" id="animationToggle"></button>
+          </div>
+
+          <div class="setting-card">
+            <div>
+              <strong>🖱️ Efecto de cursor</strong>
+              <small>Movimiento sutil de profundidad.</small>
+            </div>
+            <button class="toggle active" id="cursorToggle"></button>
+          </div>
+
+          <div class="setting-card">
+            <div>
+              <strong>⚡ Modo rendimiento</strong>
+              <small>Reduce efectos para mejorar fluidez.</small>
+            </div>
+            <button class="toggle" id="performanceToggle"></button>
+          </div>
+
+        </div>
+
+        <div class="data-actions">
+          <button class="btn secondary" onclick="exportData()">📤 Exportar datos</button>
+
+          <label class="btn secondary file-btn">
+            📥 Importar datos
+            <input type="file" id="importFile" accept=".json" hidden>
+          </label>
+
+          <button class="btn danger" onclick="clearAllData()">🗑️ Borrar datos</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+
+    <div class="modal-box">
+
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
+        ×
+      </button>
+
+      <div id="modalContent"></div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <strong>ÚtilHub</strong>
+        <span>V12 · Gran-Master-Nova</span>
+      </div>
+
+      <p>
+        Herramientas útiles para tu día a día.
+      </p>
+
+      <small>
+        NOVA FLOW 3.0 · Versión semi-final
+      </small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .then(() => console.log("ÚtilHub V12: Service Worker activo."))
+          .catch(error => console.log("Service Worker:", error));
+      });
+    }
+  </script>
+
+</body>
+</html>
